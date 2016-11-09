@@ -20,17 +20,17 @@ namespace CBIR.Net.Feature
         /// <para>Number of concentric circles</para>
         /// <para>Default value is 10</para>
         /// </summary>
-        protected virtual const int N = 10;
+        protected const int N = 10;
         /// <summary>
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
-        protected virtual const int Width = 200, Height = 200;
+        protected const int Width = 200, Height = 200;
         /// <summary>
         /// The matrix of this image feature
         /// </summary>
         protected int[][] featureMatrix = null;
 
-        public void Extract(System.Drawing.Bitmap bitmap)
+        public virtual void Extract(System.Drawing.Bitmap bitmap)
         {
             // Get gray pixel matrix
             int[][] grayPixelMatrix = ImageUtil.GetGrayPixelMatrix(bitmap, Width, Height);
@@ -125,7 +125,7 @@ namespace CBIR.Net.Feature
             }
         }
 
-        public double CalculateSimilarity(IFeature feature)
+        public virtual double CalculateSimilarity(IFeature feature)
         {
             if (this.featureMatrix == null)
             {
@@ -141,7 +141,7 @@ namespace CBIR.Net.Feature
             }
         }
 
-        public string GenerateIndexWithFeature()
+        public virtual string GenerateIndexWithFeature()
         {
             if (this.featureMatrix == null)
             {
@@ -151,12 +151,12 @@ namespace CBIR.Net.Feature
                 return ImageUtil.ConvertMatrixToString(this.featureMatrix);
         }
 
-        public void GenerateFeatureWithIndex(string index)
+        public virtual void GenerateFeatureWithIndex(string index)
         {
             this.featureMatrix = ImageUtil.ConvertStringToMatrix(index, 256, N);
         }
 
-        public string GetFeatureName()
+        public virtual string GetFeatureName()
         {
             return FeatureName;
         }

@@ -41,7 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Feature\AnnularColorLayoutHistogram.cs" />
+    <Compile Include="Feature\ColorCoherenceVector.cs" />
+    <Compile Include="Feature\HSVColorHistogram.cs" />
     <Compile Include="Feature\IFeature.cs" />
+    <Compile Include="Feature\RGBColorHistogram.cs" />
+    <Compile Include="Feature\RHash.cs" />
+    <Compile Include="Feature\UniformLBP.cs" />
+    <Compile Include="Image\HSV.cs" />
     <Compile Include="Image\ImageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

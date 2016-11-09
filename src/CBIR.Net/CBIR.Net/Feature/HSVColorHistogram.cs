@@ -14,13 +14,13 @@ namespace CBIR.Net.Feature
         /// <summary>
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
-        protected virtual const int Width = 200, Height = 200;
+        protected const int Width = 200, Height = 200;
         /// <summary>
         /// The matrix of this image feature
         /// </summary>
         protected int[][] featureMatrix = null;
 
-        public void Extract(System.Drawing.Bitmap bitmap)
+        public virtual void Extract(System.Drawing.Bitmap bitmap)
         {
             Color[][] matrix = ImageUtil.GetImagePixelMatrix(bitmap, Width, Height);
             if (matrix != null && matrix.Length != 0 && matrix[0].Length != 0)
@@ -58,7 +58,7 @@ namespace CBIR.Net.Feature
             }
         }
 
-        public double CalculateSimilarity(IFeature feature)
+        public virtual double CalculateSimilarity(IFeature feature)
         {
             if (this.featureMatrix == null)
             {
@@ -74,7 +74,7 @@ namespace CBIR.Net.Feature
             }
         }
 
-        public string GenerateIndexWithFeature()
+        public virtual string GenerateIndexWithFeature()
         {
             if (this.featureMatrix == null)
             {
@@ -84,12 +84,12 @@ namespace CBIR.Net.Feature
                 return ImageUtil.ConvertMatrixToString(this.featureMatrix);
         }
 
-        public void GenerateFeatureWithIndex(string index)
+        public virtual void GenerateFeatureWithIndex(string index)
         {
             this.featureMatrix = ImageUtil.ConvertStringToMatrix(index, 3, 256);
         }
 
-        public string GetFeatureName()
+        public virtual string GetFeatureName()
         {
             return FeatureName;
         }
