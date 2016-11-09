@@ -14,7 +14,7 @@ namespace CBIR.Net.Feature
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
         protected const int Width = 200, Height = 200;
-        private int[] featureVector = null;
+        protected int[] featureVector = null;
 
         public virtual void Extract(System.Drawing.Bitmap bitmap)
         {

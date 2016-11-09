@@ -10,7 +10,7 @@ namespace CBIR.Net.Feature
     public class RHash : IFeature
     {
         public const string FeatureName = "RHash";
-        private string featureValue = null;
+        protected string featureValue = null;
 
         public virtual void Extract(System.Drawing.Bitmap bitmap)
         {
