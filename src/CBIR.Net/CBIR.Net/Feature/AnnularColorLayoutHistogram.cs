@@ -20,11 +20,11 @@ namespace CBIR.Net.Feature
         /// <para>Number of concentric circles</para>
         /// <para>Default value is 10</para>
         /// </summary>
-        protected virtual const int N = 10;
+        protected const int N = 10;
         /// <summary>
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
-        protected virtual const int Width = 200, Height = 200;
+        protected const int Width = 200, Height = 200;
         /// <summary>
         /// The matrix of this image feature
         /// </summary>

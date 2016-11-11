@@ -18,13 +18,13 @@ namespace CBIR.Net.Feature
         /// <para>For example, CalculateSimilarity and GenerateIndexWithFeature</para>
         /// </summary>
         /// <param name="bitmap">The source image</param>
-        public void Extract(Bitmap bitmap);
+        void Extract(Bitmap bitmap);
         /// <summary>
         /// <para>Calculate the similarity between two image features</para>
         /// </summary>
         /// <param name="feature">The image feature that will compare with it</param>
         /// <returns></returns>
-        public double CalculateSimilarity(IFeature feature);
+        double CalculateSimilarity(IFeature feature);
         /// <summary>
         /// <para>Generate index with feature</para>
         /// <para>Not all data structures of image feature are suitable for storing</para>
@@ -32,16 +32,16 @@ namespace CBIR.Net.Feature
         /// <para>And this index can be stored in database or document</para>
         /// </summary>
         /// <returns></returns>
-        public string GenerateIndexWithFeature();
+        string GenerateIndexWithFeature();
         /// <summary>
         /// <para>This method is the inverse operation of GenerateIndexWithFeature</para>
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public void GenerateFeatureWithIndex(string index);
+        void GenerateFeatureWithIndex(string index);
         /// <summary>
         /// <para>Return the name of this image feature</para>
         /// </summary>
-        public string GetFeatureName();
+        string GetFeatureName();
     }
 }

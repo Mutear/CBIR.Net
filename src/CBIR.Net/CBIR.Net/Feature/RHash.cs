@@ -40,7 +40,7 @@ namespace CBIR.Net.Feature
             {
                 throw new Exception("This object has not yet extracted the image feature");
             }
-            else if (feature is AnnularColorLayoutHistogram)
+            else if (feature is RHash)
             {
                 return ImageUtil.CalculateSimilarity(this.featureValue, (feature as RHash).featureValue);
             }

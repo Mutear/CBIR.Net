@@ -14,7 +14,7 @@ namespace CBIR.Net.Feature
         /// <summary>
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
-        protected virtual const int Width = 200, Height = 200;
+        protected const int Width = 200, Height = 200;
         /// <summary>
         /// The matrix of this image feature
         /// </summary>
@@ -50,7 +50,7 @@ namespace CBIR.Net.Feature
             {
                 throw new Exception("This object has not yet extracted the image feature");
             }
-            else if (feature is AnnularColorLayoutHistogram)
+            else if (feature is RGBColorHistogram)
             {
                 return ImageUtil.CalculateSimilarity(this.featureMatrix, (feature as RGBColorHistogram).featureMatrix);
             }

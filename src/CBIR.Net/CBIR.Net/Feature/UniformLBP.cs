@@ -13,7 +13,7 @@ namespace CBIR.Net.Feature
         /// <summary>
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
-        protected virtual const int Width = 200, Height = 200;
+        protected const int Width = 200, Height = 200;
         private int[] featureVector = null;
 
         public void Extract(System.Drawing.Bitmap bitmap)
@@ -52,7 +52,7 @@ namespace CBIR.Net.Feature
             {
                 throw new Exception("This object has not yet extracted the image feature");
             }
-            else if (feature is AnnularColorLayoutHistogram)
+            else if (feature is UniformLBP)
             {
                 return ImageUtil.CalculateSimilarity(this.featureVector, (feature as UniformLBP).featureVector);
             }
