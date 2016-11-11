@@ -10,9 +10,9 @@ namespace CBIR.Net.Feature
     public class RHash : IFeature
     {
         public const string FeatureName = "RHash";
-        private string featureValue = null;
+        protected string featureValue = null;
 
-        public void Extract(System.Drawing.Bitmap bitmap)
+        public virtual void Extract(System.Drawing.Bitmap bitmap)
         {
             int[][] grayPixelMatrix = ImageUtil.GetGrayPixelMatrix(bitmap, 8, 8);
             if (grayPixelMatrix != null && grayPixelMatrix.Length != 0 && grayPixelMatrix[0].Length != 0)
@@ -34,7 +34,7 @@ namespace CBIR.Net.Feature
             }
         }
 
-        public double CalculateSimilarity(IFeature feature)
+        public virtual double CalculateSimilarity(IFeature feature)
         {
             if (string.IsNullOrEmpty(this.featureValue))
             {
@@ -50,17 +50,17 @@ namespace CBIR.Net.Feature
             }
         }
 
-        public string GenerateIndexWithFeature()
+        public virtual string GenerateIndexWithFeature()
         {
             return this.featureValue;
         }
 
-        public void GenerateFeatureWithIndex(string index)
+        public virtual void GenerateFeatureWithIndex(string index)
         {
             this.featureValue = index;
         }
 
-        public string GetFeatureName()
+        public virtual string GetFeatureName()
         {
             return FeatureName;
         }

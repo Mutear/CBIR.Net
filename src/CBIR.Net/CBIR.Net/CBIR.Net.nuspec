@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CBIR.Net</id>
-    <version>0.2</version>
+    <version>0.2.2</version>
     <title>CBIR.Net</title>
     <authors>VenyoWang</authors>
     <owners>VenyoWang</owners>
@@ -11,8 +11,8 @@
     <iconUrl>https://www.nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Some Content - based Image Retrieval algorithms</description>
-    <releaseNotes>Add algorithms</releaseNotes>
+    <releaseNotes>Make feature's property inheritable and make method virtual</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>CBIR, ImageRetrieval</tags>
+    <tags>CBIR,ImageRetrieval</tags>
   </metadata>
 </package>
