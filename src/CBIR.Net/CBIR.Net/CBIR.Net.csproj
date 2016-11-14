@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Feature\AnnularColorLayoutHistogram.cs" />
     <Compile Include="Feature\ColorCoherenceVector.cs" />
-    <Compile Include="Feature\HSVColorHistogram.cs" />
+    <Compile Include="Feature\HSVHistogram.cs" />
     <Compile Include="Feature\IFeature.cs" />
     <Compile Include="Feature\RGBColorHistogram.cs" />
     <Compile Include="Feature\RHash.cs" />
