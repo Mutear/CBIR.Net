@@ -13,14 +13,14 @@ namespace CBIR.Net.Image
         {
             try
             {
-                bitmap = ResizeBitmap(bitmap, width, height);
-                int[][] grayPixelMatrix = new int[width][];
-                for (int i = 0; i < bitmap.Height; i++)
+                Color[][] colors = ShrinkBitmap(bitmap, width, height);
+                int[][] grayPixelMatrix = new int[height][];
+                for (int i = 0; i < height; i++)
                 {
-                    grayPixelMatrix[i] = new int[height];
-                    for (int j = 0; j < bitmap.Width; j++)
+                    grayPixelMatrix[i] = new int[width];
+                    for (int j = 0; j < width; j++)
                     {
-                        Color color = bitmap.GetPixel(i, j);
+                        Color color = colors[i][j];
                         grayPixelMatrix[i][j] = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11);
                     }
                 }
@@ -36,16 +36,7 @@ namespace CBIR.Net.Image
         {
             try
             {
-                bitmap = ResizeBitmap(bitmap, width, height);
-                Color[][] pixelMatrix = new Color[width][];
-                for (int i = 0; i < bitmap.Height; i++)
-                {
-                    pixelMatrix[i] = new Color[height];
-                    for (int j = 0; j < bitmap.Width; j++)
-                    {
-                        pixelMatrix[i][j] = bitmap.GetPixel(i, j);
-                    }
-                }
+                Color[][] pixelMatrix = ShrinkBitmap(bitmap, width, height);
                 return pixelMatrix;
             }
             catch (Exception e)
@@ -54,19 +45,63 @@ namespace CBIR.Net.Image
             }
         }
 
-        public static Bitmap ResizeBitmap(Bitmap bitmap, int width, int height)
+        public static Color[][] ShrinkBitmap(Bitmap bitmap, int width, int height)
         {
-            Bitmap newBitmap = new Bitmap(width, height);
-            using (Graphics graphics = Graphics.FromImage(newBitmap))
+            if (bitmap != null)
             {
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                graphics.Clear(Color.Transparent);
-                graphics.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                    new Rectangle(0, 0, bitmap.Width, bitmap.Height), GraphicsUnit.Pixel);
-                return newBitmap;
+                int bHeight = bitmap.Height;
+                int bWidth = bitmap.Width;
+                if (bHeight < height || bWidth < width)
+                {
+                    return null;
+                }
+                else
+                {
+                    Color[][] colors = new Color[height][];
+                    double u = (double)bHeight / height;
+                    double v = (double)bWidth / width;
+                    for (int i = 0; i < height; i++)
+                    {
+                        colors[i] = new Color[width];
+                        for (int j = 0; j < width; j++)
+                        {
+                            double x = u * i;
+                            double y = v * j;
+                            int x1 = (int)x, y1 = (int)y, x2 = (int)(x + u), y2 = (int)(y + v);
+                            if (x2 >= bHeight)
+                            {
+                                x2 = bHeight - 1;
+                            }
+                            if (y2 >= bWidth)
+                            {
+                                y2 = bWidth - 1;
+                            }
+                            Color c1 = bitmap.GetPixel(y1, x1), c2 = bitmap.GetPixel(y2, x1), c3 = bitmap.GetPixel(y1, x2), c4 = bitmap.GetPixel(y2, x2);
+                            int r = (c1.R + c2.R + c3.R + c4.R) / 4;
+                            int g = (c1.G + c2.G + c3.G + c4.G) / 4;
+                            int b = (c1.B + c2.B + c3.B + c4.B) / 4;
+                            colors[i][j] = Color.FromArgb(r, g, b);
+                        }
+                    }
+                    return colors;
+                }
             }
+            return null;
         }
+
+        //public static Bitmap ResizeBitmap(Bitmap bitmap, int width, int height)
+        //{
+        //    Bitmap newBitmap = new Bitmap(width, height);
+        //    using (Graphics graphics = Graphics.FromImage(newBitmap))
+        //    {
+        //        graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+        //        graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+        //        graphics.Clear(Color.Transparent);
+        //        graphics.DrawImage(bitmap, new Rectangle(0, 0, width, height),
+        //            new Rectangle(0, 0, bitmap.Width, bitmap.Height), GraphicsUnit.Pixel);
+        //        return newBitmap;
+        //    }
+        //}
 
         public static double CalculateSimilarity(int[][] matrix1, int[][] matrix2)
         {
