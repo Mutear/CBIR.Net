@@ -44,6 +44,7 @@
     <Compile Include="Feature\ColorCoherenceVector.cs" />
     <Compile Include="Feature\HSVHistogram.cs" />
     <Compile Include="Feature\IFeature.cs" />
+    <Compile Include="Feature\MeanHash.cs" />
     <Compile Include="Feature\RGBColorHistogram.cs" />
     <Compile Include="Feature\RHash.cs" />
     <Compile Include="Feature\UniformLBP.cs" />

@@ -17,20 +17,14 @@ namespace CBIR.Net.Feature
             int[][] grayPixelMatrix = ImageUtil.GetGrayPixelMatrix(bitmap, 8, 8);
             if (grayPixelMatrix != null && grayPixelMatrix.Length != 0 && grayPixelMatrix[0].Length != 0)
             {
-                int[][] newMatrix = new int[8][];
-                for (int i = 0; i < 8; i++)
-                {
-                    newMatrix[i] = new int[8];
-                }
                 double average = 0;
                 for(int i = 0; i < 8; i++){
                     for(int j = 0; j < 8; j++){
-                        newMatrix[i][j] = grayPixelMatrix[i][j];
                         average += grayPixelMatrix[i][j];
                     }
                 }
                 average /= 64.0;
-                this.featureValue = GetFeature(newMatrix, average);
+                this.featureValue = GetFeature(grayPixelMatrix, average);
             }
         }
 

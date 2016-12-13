@@ -34,15 +34,7 @@ namespace CBIR.Net.Image
 
         public static Color[][] GetImagePixelMatrix(Bitmap bitmap, int width, int height)
         {
-            try
-            {
-                Color[][] pixelMatrix = ShrinkBitmap(bitmap, width, height);
-                return pixelMatrix;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+                return ShrinkBitmap(bitmap, width, height);
         }
 
         public static Color[][] ShrinkBitmap(Bitmap bitmap, int width, int height)
@@ -135,10 +127,6 @@ namespace CBIR.Net.Image
 
         public static double CalculateSimilarity(string str1, string str2)
         {
-            if (string.IsNullOrEmpty(str1) || string.IsNullOrEmpty(str2))
-            {
-                throw new NullReferenceException();
-            }
             int num = 0;
             for (int i = 0; i < 64; i++)
             {
