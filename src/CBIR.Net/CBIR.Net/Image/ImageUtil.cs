@@ -26,7 +26,7 @@ namespace CBIR.Net.Image
                 }
                 return grayPixelMatrix;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -34,7 +34,15 @@ namespace CBIR.Net.Image
 
         public static Color[][] GetImagePixelMatrix(Bitmap bitmap, int width, int height)
         {
-                return ShrinkBitmap(bitmap, width, height);
+            try
+            {
+                Color[][] pixelMatrix = ShrinkBitmap(bitmap, width, height);
+                return pixelMatrix;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public static Color[][] ShrinkBitmap(Bitmap bitmap, int width, int height)
