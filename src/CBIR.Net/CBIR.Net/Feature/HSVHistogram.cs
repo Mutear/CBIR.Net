@@ -39,7 +39,7 @@ namespace CBIR.Net.Feature
                     }
                 }
 
-                // 统计
+                // Count
                 int[][] histogram = new int[3][];
                 for (int i = 0; i < 3; i++)
                 {

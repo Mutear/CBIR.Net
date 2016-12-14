@@ -10,9 +10,6 @@ namespace CBIR.Net.Feature
     public class UniformLBP : IFeature
     {
         public const string FeatureName = "ULBP";
-        /// <summary>
-        /// <para>The size of the image when the feature is extracted</para>
-        /// </summary>
         protected const int Width = 200, Height = 200;
         protected int[] featureVector = null;
 

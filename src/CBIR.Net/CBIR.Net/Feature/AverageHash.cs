@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CBIR.Net.Feature
 {
-    public class MeanHash : IFeature
+    public class AverageHash : IFeature
     {
         public const string FeatureName = "MeanHash";
         protected string featureValue = null;
@@ -36,9 +36,9 @@ namespace CBIR.Net.Feature
             {
                 throw new Exception("This object has not yet extracted the image feature");
             }
-            else if (feature is MeanHash)
+            else if (feature is AverageHash)
             {
-                return ImageUtil.CalculateSimilarity(this.featureValue, (feature as MeanHash).featureValue);
+                return ImageUtil.CalculateSimilarity(this.featureValue, (feature as AverageHash).featureValue);
             }
             else
             {
