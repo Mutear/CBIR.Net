@@ -118,7 +118,7 @@ namespace CBIR.Net.Feature
                             var tuple = list[k];
                             double dis = distances[tuple.Item1][tuple.Item2];
                             double quot = dis / (maxDistances[i] / N);
-                            this.featureMatrix[i][(int)Math.Floor(quot)]++;
+                            this.featureMatrix[i][(int)Math.Floor(quot) - 1]++;
                         }
                     }
                 }
