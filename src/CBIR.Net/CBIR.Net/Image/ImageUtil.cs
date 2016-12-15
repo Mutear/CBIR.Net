@@ -11,38 +11,24 @@ namespace CBIR.Net.Image
     {
         public static int[][] GetGrayPixelMatrix(Bitmap bitmap, int width, int height)
         {
-            try
+            Color[][] colors = ShrinkBitmap(bitmap, width, height);
+            int[][] grayPixelMatrix = new int[height][];
+            for (int i = 0; i < height; i++)
             {
-                Color[][] colors = ShrinkBitmap(bitmap, width, height);
-                int[][] grayPixelMatrix = new int[height][];
-                for (int i = 0; i < height; i++)
+                grayPixelMatrix[i] = new int[width];
+                for (int j = 0; j < width; j++)
                 {
-                    grayPixelMatrix[i] = new int[width];
-                    for (int j = 0; j < width; j++)
-                    {
-                        Color color = colors[i][j];
-                        grayPixelMatrix[i][j] = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11);
-                    }
+                    Color color = colors[i][j];
+                    grayPixelMatrix[i][j] = (int)(color.R * 0.3 + color.G * 0.59 + color.B * 0.11);
                 }
-                return grayPixelMatrix;
             }
-            catch (Exception)
-            {
-                return null;
-            }
+            return grayPixelMatrix;
         }
 
         public static Color[][] GetImagePixelMatrix(Bitmap bitmap, int width, int height)
         {
-            try
-            {
-                Color[][] pixelMatrix = ShrinkBitmap(bitmap, width, height);
-                return pixelMatrix;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            Color[][] pixelMatrix = ShrinkBitmap(bitmap, width, height);
+            return pixelMatrix;
         }
 
         public static Color[][] ShrinkBitmap(Bitmap bitmap, int width, int height)
@@ -88,20 +74,6 @@ namespace CBIR.Net.Image
             }
             return null;
         }
-
-        //public static Bitmap ResizeBitmap(Bitmap bitmap, int width, int height)
-        //{
-        //    Bitmap newBitmap = new Bitmap(width, height);
-        //    using (Graphics graphics = Graphics.FromImage(newBitmap))
-        //    {
-        //        graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-        //        graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-        //        graphics.Clear(Color.Transparent);
-        //        graphics.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-        //            new Rectangle(0, 0, bitmap.Width, bitmap.Height), GraphicsUnit.Pixel);
-        //        return newBitmap;
-        //    }
-        //}
 
         public static double CalculateSimilarity(int[][] matrix1, int[][] matrix2)
         {
@@ -155,6 +127,10 @@ namespace CBIR.Net.Image
                 {
                     for (int j = 0; j < matrix[0].Length; j++, index++)
                     {
+                        if (matrix[i][j] != 0)
+                        {
+
+                        }
                         vector[index] = matrix[i][j];
                     }
                 }
@@ -173,9 +149,9 @@ namespace CBIR.Net.Image
             if (vector != null && vector.Length != 0)
             {
                 string str = vector[0].ToString();
-                for (int i = 1; i < str.Length; i++)
+                for (int i = 1; i < vector.Length; i++)
                 {
-                    str += ' ' + vector[i];
+                    str += ' ' + vector[i].ToString();
                 }
                 return str;
             }

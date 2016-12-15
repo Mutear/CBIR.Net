@@ -9,7 +9,7 @@ namespace CBIR.Net.Feature
 {
     public class AverageHash : IFeature
     {
-        public const string FeatureName = "MeanHash";
+        public const string FeatureName = "AverageHash";
         protected string featureValue = null;
 
         public virtual void Extract(System.Drawing.Bitmap bitmap)
