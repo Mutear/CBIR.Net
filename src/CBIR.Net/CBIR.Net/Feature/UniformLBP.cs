@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CBIR.Net.Feature
 {
+    /// <summary>
+    /// This algorithm seems a little problem.
+    /// </summary>
     public class UniformLBP : IFeature
     {
         public const string FeatureName = "ULBP";
