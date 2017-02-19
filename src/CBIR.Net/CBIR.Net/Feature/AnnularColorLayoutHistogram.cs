@@ -24,7 +24,7 @@ namespace CBIR.Net.Feature
         /// <summary>
         /// <para>The size of the image when the feature is extracted</para>
         /// </summary>
-        protected const int Width = 200, Height = 200;
+        protected const int Width = 50, Height = 50;
         /// <summary>
         /// The matrix of this image feature
         /// </summary>

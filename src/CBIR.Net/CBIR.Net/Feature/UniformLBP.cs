@@ -13,7 +13,7 @@ namespace CBIR.Net.Feature
     public class UniformLBP : IFeature
     {
         public const string FeatureName = "ULBP";
-        protected const int Width = 200, Height = 200;
+        protected const int Width = 50, Height = 50;
         protected int[] featureVector = null;
 
         public virtual void Extract(System.Drawing.Bitmap bitmap)
